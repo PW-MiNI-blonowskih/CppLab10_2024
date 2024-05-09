@@ -131,17 +131,14 @@ int main()
 
 	cout << "---------------  ETAP 3 - zero  ----------------------------" << endl;
 
-	/*
-
 	try
 	{
-		double wsp[] { 1, 3, 5, 8 };
+		double wsp[]{1, 3, 5, 8};
 
 		Polynomial<double> w;
 		w.generate1(wsp, 4);
 
 		int it;
-
 
 		try
 		{
@@ -150,22 +147,20 @@ int main()
 			cout << "liczba iteracji it=" << it << endl;
 			cout << "f(z)=" << w.value(z) << endl;
 		}
-		catch (const char* s)
+		catch (const char *s)
 		{
 			cout << s << endl;
 		}
-
 	}
 	catch (...)
 	{
 		cout << "Error Etap3: nie znaleziono pierwiastka dla wielomianu w" << endl;
 	}
 
-
 	//---------------------------------------------------------------
 	try
 	{
-		cmplx wsp[] { cmplx(1,2), cmplx(3,4), cmplx(5,6), cmplx(7,8) };
+		cmplx wsp[]{cmplx(1, 2), cmplx(3, 4), cmplx(5, 6), cmplx(7, 8)};
 
 		Polynomial<cmplx> w1;
 		w1.generate1(wsp, 4);
@@ -179,11 +174,10 @@ int main()
 			cout << "liczba iteracji it=" << it << endl;
 			cout << "f1(z1)=" << w1.value(z1) << endl;
 		}
-		catch (const char* s)
+		catch (const char *s)
 		{
 			cout << s << endl;
 		}
-
 	}
 	catch (...)
 	{
@@ -192,7 +186,7 @@ int main()
 	//---------------------------------------------------------------
 	try
 	{
-		cmplx zera[] { cmplx(1,2), cmplx(3,4), cmplx(5,6), cmplx(7,8) };
+		cmplx zera[]{cmplx(1, 2), cmplx(3, 4), cmplx(5, 6), cmplx(7, 8)};
 
 		Polynomial<cmplx> w2;
 		w2.generate2(zera, 4);
@@ -206,18 +200,15 @@ int main()
 			cout << "liczba iteracji it=" << it << endl;
 			cout << "f2(z2)=" << w2.value(z2) << endl;
 		}
-		catch (const char* s)
+		catch (const char *s)
 		{
 			cout << s << endl;
 		}
-
 	}
 	catch (...)
 	{
 		cout << "Error Etap3: nie znaleziono pierwiastka dla wielomianu w2" << endl;
 	}
-
-	*/
 
 	cout << "---------------  ETAP 4 - fraktale --------------------------------" << endl;
 

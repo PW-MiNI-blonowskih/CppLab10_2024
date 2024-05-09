@@ -8,7 +8,7 @@
 using std::complex;
 using std::cout;
 using std::endl;
-    
+
 /*
 //--------------------------------------------------------------------------
 template <typename T>
@@ -20,20 +20,38 @@ void fractal(const Function<complex<double> >& f, const complex<double>& q) noex
 
 */
 
-//--------------------------------------------------------------------------
-/*
-template <typename T>
-T zero(const Function<T>& f, T x, int& it)	throw(...)
+bool is_close_to_zero(double value, double eps)
 {
-	double eps = 1e-6;   // dok³adnoœæ obliczeñ
-	int max_it = 50;	 //maksymalna liczba iteracji
-
-	//uzupe³nij
-
-
-
+	return abs(value) < eps;
 }
-*/
+
+template <typename T>
+bool is_close_to_zero(const complex<T> &value, T eps)
+{
+	return abs(value) < eps;
+}
+
+//--------------------------------------------------------------------------
+template <typename T>
+T zero(const Function<T> &f, T x, int &it)
+{
+	double eps = 1e-6; // dokï¿½adnoï¿½ï¿½ obliczeï¿½
+	int max_it = 50;   // maksymalna liczba iteracji
+
+	T value = x - (f.value(x) / f.prim(x));
+
+	it = 1;
+	while (it < max_it && abs(f.prim(value)) > eps)
+	{
+		value = value - (f.value(value) / f.prim(value));
+		++it;
+
+		if (is_close_to_zero(f.value(value), eps))
+			return value;
+	}
+
+	throw "Brak zbieznosci";
+}
 
 //--------------------------------------------------------------------------
 
@@ -43,8 +61,8 @@ void fractal(const Function<std::complex<double> >& f, const std::complex<double
 {
 	double qre = q.real();
 	double qim = q.imag();
-	
-	tab2d<element,N> frrr;	//wykorzystanie wzorca tablicy 
+
+	tab2d<element,N> frrr;	//wykorzystanie wzorca tablicy
 	int it;
 
 	for (int i = 0; i < N; i++)
@@ -57,7 +75,7 @@ void fractal(const Function<std::complex<double> >& f, const std::complex<double
 			}
 			catch (...)
 			{
-				// nawet jeœli brak zbie¿noœci interesuje nas liczba wykonanych iteracji				
+				// nawet jeï¿½li brak zbieï¿½noï¿½ci interesuje nas liczba wykonanych iteracji
 			}
 			frrr(i, j) = element(it);
 		}
@@ -75,15 +93,3 @@ void fractal(const Function<std::complex<double> >& f, const std::complex<double
 */
 
 //--------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
