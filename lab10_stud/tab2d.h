@@ -1,29 +1,28 @@
 #pragma once
 #include <iostream>
 
-   
-
+template <typename T, int N>
 class tab2d
 {
-public:
-	static const int N = 50;
-private:
-	int tab[N][N];
+	T tab[N][N];
 
 public:
 	tab2d();
-	int& operator()(int i, int j);
-	int maks() const;
-	int min() const;
-	void scale(std::ostream& out) const;
+	T &operator()(int i, int j);
+	T maks() const;
+	T min() const;
+	void scale(std::ostream &out) const;
 
-	friend std::ostream& operator<<(std::ostream& out, const tab2d& t);
+	friend std::ostream &operator<<(std::ostream &out, const tab2d &t);
 };
 
-
-
-
-
-
-
-
+std::ostream &operator<<(std::ostream &out, const tab2d &t)
+{
+	for (int i = 0; i < t.N; i++)
+	{
+		for (int j = 0; j < t.N; j++)
+			out << t.tab[i][j];
+		out << endl;
+	}
+	return out;
+}

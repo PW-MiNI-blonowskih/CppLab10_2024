@@ -212,12 +212,12 @@ int main()
 
 	cout << "---------------  ETAP 4 - fraktale --------------------------------" << endl;
 
-	/*
-	const int K = 8;	//np K=4, K=5, K=6, K=7, K=8, K=9
+	const int K = 8; // np K=4, K=5, K=6, K=7, K=8, K=9
 	cmplx wsp3[K], wsp4[K];
-	for (int i = 0; i < K; i++) {
+	for (int i = 0; i < K; i++)
+	{
 		wsp3[i] = cmplx(1);
-		wsp4[i] = i%2? cmplx(-2.*i,0):cmplx(2.*i,i);
+		wsp4[i] = i % 2 ? cmplx(-2. * i, 0) : cmplx(2. * i, i);
 	}
 
 	//---------------------------------------
@@ -245,7 +245,4 @@ int main()
 	{
 		cout << "Error Etap4: Nie wygenerowano fraktala dla wielomianu w4" << endl;
 	}
-
-
-	*/
 }

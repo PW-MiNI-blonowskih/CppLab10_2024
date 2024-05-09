@@ -55,14 +55,13 @@ T zero(const Function<T> &f, T x, int &it)
 
 //--------------------------------------------------------------------------
 
-/*
 template <int N>
-void fractal(const Function<std::complex<double> >& f, const std::complex<double> & q) noexcept
+void fractal(const Function<std::complex<double>> &f, const std::complex<double> &q) noexcept
 {
 	double qre = q.real();
 	double qim = q.imag();
 
-	tab2d<element,N> frrr;	//wykorzystanie wzorca tablicy
+	tab2d<element, N> frrr; // wykorzystanie wzorca tablicy
 	int it;
 
 	for (int i = 0; i < N; i++)
@@ -71,7 +70,6 @@ void fractal(const Function<std::complex<double> >& f, const std::complex<double
 			try
 			{
 				zero(f, complex<double>(qre + i, qim + j), it);
-
 			}
 			catch (...)
 			{
@@ -80,16 +78,13 @@ void fractal(const Function<std::complex<double> >& f, const std::complex<double
 			frrr(i, j) = element(it);
 		}
 
-
 	cout << "FRAKTAL NEWTONA:" << endl;
 	cout << frrr << endl;
 
 	cout << "SKALA :" << endl;
 	frrr.scale(std::cout);
-	cout << endl << endl;
-
+	cout << endl
+		 << endl;
 }
-
-*/
 
 //--------------------------------------------------------------------------
