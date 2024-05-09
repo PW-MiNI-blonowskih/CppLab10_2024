@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+template <typename T>
 class Function
 {
 
@@ -10,97 +11,102 @@ public:
 	Function(const Function &) = delete;
 	Function &operator=(const Function &) = delete;
 
-	virtual double value(double x) const = 0;
-	virtual double prim(double x) const = 0;
+	virtual T value(T x) const = 0;
+	virtual T prim(T x) const = 0;
 
 	virtual ~Function() {}
 };
 
 //---------------------------------------------------
-class Const : public Function
+template <typename T>
+class Const : public Function<T>
 {
-	double a;
+	T a;
 
 public:
-	Const(double a) : a{a} {}
+	Const(T a) : a{a} {}
 
-	double value(double x) const override { return a; }
-	double prim(double x) const override { return 0; }
+	T value(T x) const override { return a; }
+	T prim(T x) const override { return 0; }
 };
 
-class X : public Function
+template <typename T>
+class X : public Function<T>
 {
 public:
 	X() {}
 
-	double value(double x) const override { return x; }
-	double prim(double x) const override { return 1; }
+	T value(T x) const override { return x; }
+	T prim(T x) const override { return 1; }
 };
 
-class Plus : public Function
+template <typename T>
+class Plus : public Function<T>
 {
-	Function *func1, *func2;
+	Function<T> *func1, *func2;
 
 public:
-	Plus(Function *func1, Function *func2) : func1{func1}, func2{func2} {}
+	Plus(Function<T> *func1, Function<T> *func2) : func1{func1}, func2{func2} {}
 	~Plus()
 	{
 		delete func1;
 		delete func2;
 	}
 
-	double value(double x) const override
+	T value(T x) const override
 	{
 		return func1->value(x) + func2->value(x);
 	}
 
-	double prim(double x) const override
+	T prim(T x) const override
 	{
 		return func1->prim(x) + func2->prim(x);
 	}
 };
 
-class Minus : public Function
+template <typename T>
+class Minus : public Function<T>
 {
-	Function *func1, *func2;
+	Function<T> *func1, *func2;
 
 public:
-	Minus(Function *func1, Function *func2) : func1{func1}, func2{func2} {}
+	Minus(Function<T> *func1, Function<T> *func2) : func1{func1}, func2{func2} {}
 	~Minus()
 	{
 		delete func1;
 		delete func2;
 	}
 
-	double value(double x) const override
+	T value(T x) const override
 	{
 		return func1->value(x) - func2->value(x);
 	}
 
-	double prim(double x) const override
+	T prim(T x) const override
 	{
 		return func1->prim(x) - func2->prim(x);
 	}
 };
 
-class Multiplies : public Function
+template <typename T>
+class Multiplies : public Function<T>
 {
-	Function *func1, *func2;
+	Function<T> *func1, *func2;
 
 public:
-	Multiplies(Function *func1, Function *func2) : func1{func1}, func2{func2} {}
+	Multiplies(Function<T> *func1, Function<T> *func2) : func1{func1}, func2{func2} {}
 	~Multiplies()
 	{
 		delete func1;
 		delete func2;
 	}
 
-	double value(double x) const override
+	T value(T x) const override
 	{
 		return func1->value(x) * func2->value(x);
 	}
 
-	double prim(double x) const override
+	T prim(T x) const override
 	{
 		return (func1->prim(x) * func2->value(x)) + (func2->prim(x) * func1->value(x));
 	}
@@ -108,36 +114,37 @@ public:
 
 //--------------------------------------------------------------------------
 
-class Polynomial : public Function
+template <typename T>
+class Polynomial : public Function<T>
 {
-	Function *func;
+	Function<T> *func;
 
 public:
 	Polynomial() : func{nullptr} {}
 	~Polynomial() { delete func; }
 
-	double value(double x) const override { return func->value(x); }
-	double prim(double x) const override { return func->prim(x); }
+	T value(T x) const override { return func->value(x); }
+	T prim(T x) const override { return func->prim(x); }
 
-	void generate1(double *c, int n)
+	void generate1(T *c, int n)
 	{
-		Function *temp_func = new Const(c[n - 1]);
+		Function<T> *temp_func = new Const<T>(c[n - 1]);
 
 		for (int i{n - 2}; i >= 0; --i)
 		{
-			temp_func = new Plus(new Const(c[i]), new Multiplies(new X(), temp_func));
+			temp_func = new Plus<T>(new Const<T>(c[i]), new Multiplies<T>(new X<T>(), temp_func));
 		}
 
 		func = temp_func;
 	}
 
-	void generate2(double *z, int n)
+	void generate2(T *z, int n)
 	{
-		Function *temp_func = new Const(1);
+		Function<T> *temp_func = new Const<T>(1);
 
 		for (int i{0}; i < n; ++i)
 		{
-			temp_func = new Multiplies(new Minus(new X(), new Const(z[i])), temp_func);
+			temp_func = new Multiplies<T>(new Minus<T>(new X<T>(), new Const<T>(z[i])), temp_func);
 		}
 
 		func = temp_func;

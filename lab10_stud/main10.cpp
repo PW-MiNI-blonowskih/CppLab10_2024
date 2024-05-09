@@ -11,7 +11,7 @@ using cmplx = complex<double>;
 
 int main()
 {
-
+	/*
 	cout << "---------------  ETAP 1: double -----------------------------------" << endl;
 	try
 	{
@@ -30,7 +30,6 @@ int main()
 	{
 		cout << "Error Etap1: Nie wykonano obliczen dla wielomianu w1" << endl;
 	}
-	/*
 	//-----------------------------------------------------------------------
 	try
 	{
@@ -55,16 +54,16 @@ int main()
 	cout << "---------------  ETAP 2: function template  -----------------------" << endl;
 	// dla T=double
 
-	/*
 	try
 	{
-		double wsp1[] { 1, 2, 3 };	//w(x)=1+2*x+3*x^2
+		double wsp1[]{1, 2, 3}; // w(x)=1+2*x+3*x^2
 		double x1 = 3;
 
 		Polynomial<double> w1;
 		w1.generate1(wsp1, 3);
 
-		cout << endl << "funkcja w1(x) :" << endl;
+		cout << endl
+			 << "funkcja w1(x) :" << endl;
 		cout << " w1(x1) =" << w1.value(x1) << endl;
 		cout << " w1'(x1)=" << w1.prim(x1) << endl;
 	}
@@ -77,7 +76,7 @@ int main()
 
 	try
 	{
-		double zera[] { 1, 3, 5 };	//w(x)=(x-1)*(x-2)*(x-3)
+		double zera[]{1, 3, 5}; // w(x)=(x-1)*(x-2)*(x-3)
 		double x11 = 7;
 		Polynomial<double> w11;
 
@@ -91,21 +90,20 @@ int main()
 	{
 		cout << "Error Etap2: Nie wykonano obliczen dla wielomianu w11" << endl;
 	}
-	*/
 
 	// dla T=cmplx
 	//------------------------------------------------------------------------
 
-	/*
 	try
 	{
-		cmplx wsp1[] { cmplx(1,2), cmplx(3,4), cmplx(5,6) };
+		cmplx wsp1[]{cmplx(1, 2), cmplx(3, 4), cmplx(5, 6)};
 		cmplx x1 = cmplx(3, -7);
 
 		Polynomial<cmplx> w2;
 		w2.generate1(wsp1, 3);
 
-		cout << endl << "funkcja w2(x) :" << endl;
+		cout << endl
+			 << "funkcja w2(x) :" << endl;
 		cout << " w2(x1) = " << w2.value(x1) << endl;
 		cout << " w2'(x1)= " << w2.prim(x1) << endl;
 	}
@@ -116,7 +114,7 @@ int main()
 	//-----------------------------------------------------------------------
 	try
 	{
-		cmplx zera[] { cmplx(1,2), cmplx(3,4), cmplx(5,6) };
+		cmplx zera[]{cmplx(1, 2), cmplx(3, 4), cmplx(5, 6)};
 		cmplx x11 = cmplx(3, -7);
 
 		Polynomial<cmplx> w22;
@@ -125,13 +123,11 @@ int main()
 		cout << "funkcja w22(x) :" << endl;
 		cout << " w22(x11) = " << w22.value(x11) << endl;
 		cout << " w22'(x11)= " << w22.prim(x11) << endl;
-
 	}
 	catch (...)
 	{
 		cout << "Error Etap2: Nie wykonano obliczen dla wielomianu w22" << endl;
 	}
-	*/
 
 	cout << "---------------  ETAP 3 - zero  ----------------------------" << endl;
 
