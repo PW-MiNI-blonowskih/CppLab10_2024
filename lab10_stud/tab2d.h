@@ -16,11 +16,12 @@ public:
 	friend std::ostream &operator<<(std::ostream &out, const tab2d &t);
 };
 
-std::ostream &operator<<(std::ostream &out, const tab2d &t)
+template <typename T, int N>
+std::ostream &operator<<(std::ostream &out, const tab2d<T, N> &t)
 {
-	for (int i = 0; i < t.N; i++)
+	for (int i = 0; i < N; i++)
 	{
-		for (int j = 0; j < t.N; j++)
+		for (int j = 0; j < N; j++)
 			out << t.tab[i][j];
 		out << endl;
 	}
