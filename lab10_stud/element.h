@@ -7,7 +7,7 @@
 
 class element
 {
-	static const char z = '*';
+	static const char z = '#';
 	int color;
 
 public:

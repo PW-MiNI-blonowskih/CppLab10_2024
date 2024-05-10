@@ -212,7 +212,7 @@ int main()
 
 	cout << "---------------  ETAP 4 - fraktale --------------------------------" << endl;
 
-	const int K = 8; // np K=4, K=5, K=6, K=7, K=8, K=9
+	const int K = 6; // np K=4, K=5, K=6, K=7, K=8, K=9
 	cmplx wsp3[K], wsp4[K];
 	for (int i = 0; i < K; i++)
 	{
@@ -226,7 +226,7 @@ int main()
 		Polynomial<cmplx> w3;
 		w3.generate1(wsp3, K);
 
-		fractal<50>(w3, cmplx(-25, -25));
+		fractal<400>(w3, cmplx(-51, -51));
 	}
 	catch (...)
 	{
@@ -239,7 +239,7 @@ int main()
 		Polynomial<cmplx> w4;
 		w4.generate2(wsp4, K);
 
-		fractal<70>(w4, cmplx(0));
+		fractal<200>(w4, cmplx(0));
 	}
 	catch (...)
 	{
