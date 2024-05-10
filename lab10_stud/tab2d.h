@@ -7,13 +7,56 @@ class tab2d
 	T tab[N][N];
 
 public:
-	tab2d();
-	T &operator()(int i, int j);
-	T maks() const;
-	T min() const;
-	void scale(std::ostream &out) const;
+	tab2d()
+	{
+		for (int i{0}; i < N; ++i)
+			for (int j{0}; j < N; ++j)
+				tab[i][j] = 0;
+	}
 
-	friend std::ostream &operator<<(std::ostream &out, const tab2d &t);
+	T &operator()(int i, int j)
+	{
+		return tab[i][j];
+	}
+
+	T maks() const
+	{
+		T m = tab[0][0];
+
+		for (int i{0}; i < N; ++i)
+			for (int j{0}; j < N; ++j)
+				if (tab[i][j] > m)
+					m = tab[i][j];
+
+		return m;
+	}
+
+	T min() const
+	{
+		T m = tab[0][0];
+
+		for (int i{0}; i < N; ++i)
+			for (int j{0}; j < N; ++j)
+				if (tab[i][j] < m)
+					m = tab[i][j];
+
+		return m;
+	}
+
+	void scale(std::ostream &out) const
+	{
+		T m1 = min();
+		T m2 = maks();
+
+		while (!(m1 > m2))
+		{
+			out << m1;
+			++m1;
+		}
+	}
+
+	template <typename U, int M>
+	friend std::ostream &operator<<(std::ostream &out, const tab2d<U, M> &t);
 };
 
 template <typename T, int N>
